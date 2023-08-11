@@ -3,8 +3,11 @@ on:
   issues:
     types:
       - opened
-jobs:
+jobs: 
   assign-label:
+    permissions: 
+      issues: write # This workflow will successfully be able to edit issue (add bug label), 
+      # but wont be able to explore repo code, or manipualte the actions added to this repo
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
@@ -18,3 +21,6 @@ jobs:
               "labels": ["bug"]
             }' \
           --fail
+
+
+# you can set permissions on job or workflow level
