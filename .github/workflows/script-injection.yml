@@ -8,10 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
+        env: 
+          TITLE: github.event.issue.title
         run: |
-          issue_title="${{ github.event.issue.title }}"
-          if [[ "$issue_title" == *"bug"* ]]; then
+          if [[ "$TITLE" == *"bug"* ]]; then
           echo "Issue is about a bug!"
           else
           echo "Issue is not about a bug"
           fi
+
+#Title will be evaluated and used OUTSIDE of the shell
+# If you are using user generated values, it is strongly recommened that you 
+# store them in env variable before using them in commands executed
